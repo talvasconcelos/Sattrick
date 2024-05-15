@@ -1,0 +1,87 @@
+<!-- DIVISION DIALOG -->
+<q-dialog v-model="divisionDialog.show" position="top" @hide="resetForms">
+  <q-card class="q-pa-lg q-pt-xl lnbits__dialog-card">
+    <div class="row q-my-lg">
+      <h6 class="q-my-none">Each division will have 20 teams</h6>
+      <div>
+        Teams and players will be added to the division after it is created
+      </div>
+    </div>
+    <q-form @submit="createDivision" class="q-gutter-md">
+      <q-input
+        filled
+        dense
+        v-model.trim="divisionDialog.data.name"
+        type="text"
+        label="Division Name *"
+      ></q-input>
+      <q-input
+        filled
+        dense
+        v-model.trim="divisionDialog.data.description"
+        type="text"
+        label="Division Description"
+      ></q-input>
+      <div class="row q-mt-lg">
+        <q-btn
+          unelevated
+          color="primary"
+          :disable="divisionDialog.data.name == null"
+          type="submit"
+          label="Create Division"
+        ></q-btn>
+        <q-btn v-close-popup flat color="grey" class="q-ml-auto">Cancel</q-btn>
+      </div>
+    </q-form>
+  </q-card>
+</q-dialog>
+<!-- LEAGUE DIALOG -->
+<q-dialog v-model="leagueDialog.show" position="top" @hide="resetForms">
+  <q-card class="q-pa-lg q-pt-xl lnbits__dialog-card">
+    <q-form @submit="createLeague" class="q-gutter-md">
+      <q-select
+        filled
+        dense
+        emit-value
+        v-model="leagueDialog.data.wallet"
+        :options="g.user.walletOptions"
+        label="Wallet *"
+      >
+      </q-select>
+      <q-input
+        filled
+        dense
+        v-model.trim="leagueDialog.data.name"
+        type="text"
+        label="League Name *"
+      ></q-input>
+      <q-input
+        filled
+        dense
+        v-model.trim="leagueDialog.data.description"
+        type="text"
+        label="League Description"
+      ></q-input>
+      <q-select
+        :disable="!!leagueDialog.data.id"
+        filled
+        dense
+        emit-value
+        v-model="leagueDialog.data.country"
+        :options="countries"
+        label="Country *"
+      >
+      </q-select>
+      <div class="row q-mt-lg">
+        <q-btn
+          unelevated
+          color="primary"
+          :disable="leagueDialog.data.name == null || leagueDialog.data.wallet == null || leagueDialog.data.country == null"
+          type="submit"
+          label="Create League"
+        ></q-btn>
+        <q-btn v-close-popup flat color="grey" class="q-ml-auto">Cancel</q-btn>
+      </div>
+    </q-form>
+  </q-card>
+</q-dialog>

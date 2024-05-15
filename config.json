@@ -1,0 +1,7 @@
+{
+  "name": "Fantasy League",
+  "short_description": "Fantasy League on sats",
+  "tile": "/example/static/bitcoin-extension.png",
+  "contributors": ["talvasconcelos"],
+  "min_lnbits_version": "0.12.0"
+}
